@@ -28,6 +28,9 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now_add=True)),
             ],
+            options={
+            },
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Ad',
@@ -45,6 +48,9 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now_add=True)),
             ],
+            options={
+            },
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='AdGroup',
@@ -56,6 +62,9 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now_add=True)),
             ],
+            options={
+            },
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Alert',
@@ -68,6 +77,9 @@ class Migration(migrations.Migration):
                 ('updated', models.DateTimeField(auto_now_add=True)),
                 ('account', models.ForeignKey(related_name='alerts', to='adwords.Account')),
             ],
+            options={
+            },
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Campaign',
@@ -82,6 +94,9 @@ class Migration(migrations.Migration):
                 ('updated', models.DateTimeField(auto_now_add=True)),
                 ('account', models.ForeignKey(related_name='campaigns', to='adwords.Account')),
             ],
+            options={
+            },
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='DailyAccountMetrics',
@@ -129,6 +144,9 @@ class Migration(migrations.Migration):
                 ('search_lost_is_budget', models.DecimalField(help_text=b'Search Lost IS (budget)', null=True, max_digits=12, decimal_places=2, blank=True)),
                 ('account', models.ForeignKey(related_name='metrics', to='adwords.Account')),
             ],
+            options={
+            },
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='DailyAdGroupMetrics',
@@ -180,6 +198,9 @@ class Migration(migrations.Migration):
                 ('view_through_conv', models.BigIntegerField(help_text=b'View-through conv.', null=True, blank=True)),
                 ('ad_group', models.ForeignKey(related_name='metrics', to='adwords.AdGroup')),
             ],
+            options={
+            },
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='DailyAdMetrics',
@@ -212,6 +233,9 @@ class Migration(migrations.Migration):
                 ('view_through_conv', models.BigIntegerField(help_text=b'View-through conv.', null=True, blank=True)),
                 ('ad', models.ForeignKey(related_name='metrics', to='adwords.Ad')),
             ],
+            options={
+            },
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='DailyCampaignMetrics',
@@ -264,6 +288,9 @@ class Migration(migrations.Migration):
                 ('view_through_conv', models.BigIntegerField(help_text=b'View-through conv.', null=True, blank=True)),
                 ('campaign', models.ForeignKey(related_name='metrics', to='adwords.Campaign')),
             ],
+            options={
+            },
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='ReportFile',
@@ -273,15 +300,20 @@ class Migration(migrations.Migration):
                 ('processed', models.BooleanField(default=False)),
                 ('created', models.DateTimeField(auto_now_add=True)),
             ],
+            options={
+            },
+            bases=(models.Model,),
         ),
         migrations.AddField(
             model_name='adgroup',
             name='campaign',
             field=models.ForeignKey(related_name='ad_groups', to='adwords.Campaign'),
+            preserve_default=True,
         ),
         migrations.AddField(
             model_name='ad',
             name='ad_group',
             field=models.ForeignKey(related_name='ads', to='adwords.AdGroup'),
+            preserve_default=True,
         ),
     ]
