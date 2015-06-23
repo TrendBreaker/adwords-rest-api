@@ -1,3 +1,18 @@
+from __future__ import absolute_import
+
+
+# for rabbitMQ as broker
+
+BROKER_URL = 'amqp://guest:guest@localhost//'
+
+
+
+
+
+
+
+
+
 """
 Django settings for medlane project.
 
@@ -38,10 +53,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'adwords',
     'material',
     'material.frontend',
     'easy_pjax',
+    'djcelery',
+    'adwords',
 )
 
 MIDDLEWARE_CLASSES = (

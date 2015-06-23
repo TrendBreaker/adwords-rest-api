@@ -1,6 +1,14 @@
 from django.contrib import admin
 
 from .models import Account, Alert, DailyAccountMetrics, Campaign, DailyCampaignMetrics, AdGroup, DailyAdGroupMetrics, Ad, DailyAdMetrics, ReportFile
+from djcelery.models import TaskMeta
+
+
+class TaskMetaAdmin(admin.ModelAdmin):
+    readonly_fields = ('result',) 
+
+
+admin.site.register(TaskMeta, TaskMetaAdmin)
 
 admin.site.register(Account)
 admin.site.register(Alert)

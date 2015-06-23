@@ -9,7 +9,7 @@ class GoogleAdwordsConf(AppConf):
     DEVELOPER_TOKEN = ''
     
     SYNC_ACCOUNT = True
-    SYNC_CAMPAIGN = False
+    SYNC_CAMPAIGN = True
     SYNC_ADGROUP = False
     SYNC_AD = False
 
