@@ -318,10 +318,10 @@ class Account(models.Model):
         try:
             return ReportFile.objects.request(report_definition=report_definition,
                                               client_customer_id=self.account_id)
-        except RateExceededError, exc:
+        except RateExceededError as exc:
             logger.info("Caught RateExceededError for account '%s' - retrying in '%s' seconds.", self.pk, exc.retry_after_seconds)
             raise self.get_account_data.retry(exc, countdown=exc.retry_after_seconds)
-        except GoogleAdsError, exc:
+        except GoogleAdsError as exc:
             raise InterceptedGoogleAdsError(exc, account_id=self.account_id)
 
     @task(name='Account.sync_account', queue=settings.GOOGLEADWORDS_DATA_IMPORT_CELERY_QUEUE, time_limit=settings.GOOGLEADWORDS_CELERY_TIMELIMIT, soft_time_limit=settings.GOOGLEADWORDS_CELERY_SOFTTIMELIMIT)
@@ -589,7 +589,7 @@ class Alert(models.Model):
                         parts = row.details[0].triggerTime.split(' ')
                         dt = datetime.strptime(parts[0] + parts[1], '%Y%m%d%H%M%S')
                         occurred = pytz.timezone(parts[2]).localize(dt)
-                    except AttributeError, e:
+                    except AttributeError as e:
                         logger.error("Could not create Alert as row didn't have a triggerTime.", exc_info=e)
                         continue
 
